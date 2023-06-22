@@ -223,12 +223,6 @@ button {
   transition: background-color 0.15s;
 }
 
-button:disabled {
-  opacity: 0.5;
-  filter: grayscale(0.5);
-  pointer-events: none;
-}
-
 button:active {
   background: var(--c-brand-primary_active);
   transition: none;
@@ -511,13 +505,8 @@ img {
   text-align: center;
 }
 
-.counter button.secondary {
+.counter button {
   display: inline-flex;
-  font-size: 1rem;
-}
-
-.counter button.tertiary {
-  margin: auto;
 }
 
 .counter h2 {
