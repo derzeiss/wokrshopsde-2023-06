@@ -1,8 +1,9 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
 import App from "./App";
+import { fetchBook } from "./domain/book/api";
 import { AboutScreen } from "./screens/AboutScreen";
 import { BookDetailScreen } from "./screens/BookDetailScreen";
-import { BookEditScreen } from "./screens/BookEditScreen";
+import { BookEditScreenWithContext } from "./screens/BookEditScreenWithContext";
 import { BooksScreen } from "./screens/BooksScreen";
 import { ErrorScreen } from "./screens/ErrorScreen";
 import { PersonEditScreen } from "./screens/PersonEditScreen";
@@ -32,7 +33,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "books/:isbn/edit",
-        element: <BookEditScreen />,
+        element: <BookEditScreenWithContext />,
+        loader: ({ params }) => fetchBook(params.isbn || ""),
       },
       {
         path: "person-simple",

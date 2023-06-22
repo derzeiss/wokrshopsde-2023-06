@@ -9,7 +9,7 @@ import { ValidatorFunction } from "../domain/forms/ValidatorFunction";
 type BookEditFormBucket = Partial<Book>;
 
 const getInitialFormBucket = (): FormBucket<BookEditFormBucket> => ({
-  data: {
+  values: {
     title: "",
     subtitle: "",
     author: "",
@@ -40,8 +40,8 @@ export const BookEditScreen = () => {
 
     setFormBucket({
       ...formBucket,
-      data: {
-        ...formBucket.data,
+      values: {
+        ...formBucket.values,
         [ev.target.name]: ev.target.value,
       },
       errors: {
@@ -86,7 +86,7 @@ export const BookEditScreen = () => {
           <input
             id="title"
             name="title"
-            value={formBucket.data.title}
+            value={formBucket.values.title}
             onChange={handleChange}
             onBlur={handleBlur}
             autoComplete="none"
@@ -101,7 +101,7 @@ export const BookEditScreen = () => {
           <input
             id="subtitle"
             name="subtitle"
-            value={formBucket.data.subtitle}
+            value={formBucket.values.subtitle}
             onChange={handleChange}
             onBlur={handleBlur}
             autoComplete="none"
@@ -116,7 +116,7 @@ export const BookEditScreen = () => {
           <input
             id="author"
             name="author"
-            value={formBucket.data.author}
+            value={formBucket.values.author}
             onChange={handleChange}
             onBlur={handleBlur}
             autoComplete="none"
@@ -132,7 +132,7 @@ export const BookEditScreen = () => {
             id="numPages"
             name="numPages"
             type="number"
-            value={formBucket.data.numPages}
+            value={formBucket.values.numPages}
             onChange={handleChange}
             onBlur={handleBlur}
             autoComplete="none"

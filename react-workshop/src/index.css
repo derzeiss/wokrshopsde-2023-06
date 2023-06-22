@@ -17,6 +17,9 @@
   /* .text-meta */
   --c-text-tertiary: hsl(26deg 4% 67%);
 
+  /* ui */
+  --c-ui-error: hsl(12deg 100% 47%);
+
   /* <html> */
   --c-bg-browser: linear-gradient(
     190deg,
@@ -281,6 +284,10 @@ input {
 input:focus {
   outline: 2px solid var(--c-brand-primary);
   transition: none;
+}
+
+.textbox_invalid {
+  outline: 3px solid var(--c-ui-error);
 }
 
 label {

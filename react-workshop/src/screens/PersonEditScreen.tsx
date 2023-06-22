@@ -7,7 +7,7 @@ interface PersonEditFormData {
 }
 
 const getBlankFormData = (): FormBucket<PersonEditFormData> => ({
-  data: {
+  values: {
     firstname: "",
     lastname: "",
   },
@@ -31,13 +31,13 @@ const validator = {
 
 export const PersonEditScreen = () => {
   const [formData, setFormData] = useState(getBlankFormData());
-  const firstnameError = validateFirstname(formData.data.firstname);
+  const firstnameError = validateFirstname(formData.values.firstname);
 
   const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
-      data: {
-        ...formData.data,
+      values: {
+        ...formData.values,
         [ev.target.name]: ev.target.value,
       },
     });
@@ -60,7 +60,7 @@ export const PersonEditScreen = () => {
         <input
           id="firstname"
           name="firstname"
-          value={formData.data.firstname}
+          value={formData.values.firstname}
           onChange={handleChange}
           onBlur={handleBlur}
           autoComplete="none"
@@ -75,7 +75,7 @@ export const PersonEditScreen = () => {
         <input
           id="lastname"
           name="lastname"
-          value={formData.data.lastname}
+          value={formData.values.lastname}
           onChange={handleChange}
           onBlur={handleBlur}
           autoComplete="none"
