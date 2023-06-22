@@ -24,3 +24,15 @@ export const updateBook = (book: Book) => {
     res.ok ? res.json() : Promise.reject(res)
   ) as Promise<Book>;
 };
+
+export const patchBook = (isbn: string, book: Partial<Book>) => {
+  return fetch(`http://localhost:4730/books/${isbn}`, {
+    method: "patch",
+    body: JSON.stringify(book),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) =>
+    res.ok ? res.json() : Promise.reject(res)
+  ) as Promise<Book>;
+};

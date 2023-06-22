@@ -6,8 +6,6 @@ import { BookDetailScreen } from "./screens/BookDetailScreen";
 import { BookEditScreenWithContext } from "./screens/BookEditScreenWithContext";
 import { BooksScreen } from "./screens/BooksScreen";
 import { ErrorScreen } from "./screens/ErrorScreen";
-import { PersonEditScreen } from "./screens/PersonEditScreen";
-import { PersonEditScreenSimple } from "./screens/PersonEditScreenSimple";
 
 export const router = createBrowserRouter([
   {
@@ -35,14 +33,6 @@ export const router = createBrowserRouter([
         path: "books/:isbn/edit",
         element: <BookEditScreenWithContext />,
         loader: ({ params }) => fetchBook(params.isbn || ""),
-      },
-      {
-        path: "person-simple",
-        element: <PersonEditScreenSimple />,
-      },
-      {
-        path: "person",
-        element: <PersonEditScreen />,
       },
     ],
   },

@@ -5,4 +5,6 @@ export interface FormBucket<T> {
   touched: { [key in keyof T]?: boolean };
   errors: { [key in keyof T]?: string };
   validators: { [key in keyof T]?: ValidatorFunction[] };
+  initialValues: T;
+  hasChanged: boolean;
 }

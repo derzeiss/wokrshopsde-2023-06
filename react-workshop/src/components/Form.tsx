@@ -10,9 +10,9 @@ interface FormProps<T> {
   validators?: { [key in keyof T]?: ValidatorFunction[] };
   /**
    * Form submit handler.
-   * @param bucket formBucket containing the current values, errors, etc.
+   * @param values current form values
    */
-  onFormSubmit: (bucket: FormBucket<T>) => void;
+  onFormSubmit: (values: T) => void;
   /** children can be either a default {@link ReactNode} or a render-function */
   children?: ReactNode | ((formBucket: FormBucket<T>) => ReactNode);
 
@@ -33,16 +33,26 @@ export const Form = <T extends {}>({
 }: FormProps<T>) => {
   const [formBucket, setFormBucket] = useState<FormBucket<T>>({
     values: initialValues,
+    hasChanged: false,
     touched: {},
     errors: {},
     validators: validators || {},
+    initialValues: JSON.parse(JSON.stringify(initialValues)) as T,
   });
 
   const handleSubmit = (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     // don't submit if there are any validation errors
     if (Object.values(formBucket.errors).some((e) => !!e)) return;
-    onFormSubmit(formBucket);
+    onFormSubmit(formBucket.values);
+
+    setFormBucket({
+      ...formBucket,
+      touched: {},
+      errors: {},
+      hasChanged: false,
+      initialValues: { ...formBucket.values },
+    });
   };
 
   return (

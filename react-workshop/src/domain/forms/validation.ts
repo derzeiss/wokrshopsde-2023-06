@@ -21,6 +21,10 @@ export const v = {
       parseInt(val) >= min
         ? undefined
         : msg ?? `Must be greater or equal ${min}`,
+  pattern:
+    (pattern: RegExp, msg?: string): ValidatorFunction =>
+    (val) =>
+      pattern.test(val) ? undefined : msg ?? "Must match given pattern",
 };
 
 export const validate = (val: any, validatorFns: ValidatorFunction[]) => {

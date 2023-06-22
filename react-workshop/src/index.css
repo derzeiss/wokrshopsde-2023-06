@@ -231,6 +231,11 @@ button:active {
   transition: none;
 }
 
+button:disabled {
+  background: var(--c-text-tertiary);
+  cursor: not-allowed;
+}
+
 button *:first-child {
   font-size: var(--font-lg);
 }

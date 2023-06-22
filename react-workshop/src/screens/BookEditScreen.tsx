@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { Book } from "../domain/book/Book";
 import { fetchBook, updateBook } from "../domain/book/api";
 import { FormBucket } from "../domain/forms/FormBucket";
-import { v, validate } from "../domain/forms/validation";
 import { ValidatorFunction } from "../domain/forms/ValidatorFunction";
+import { v, validate } from "../domain/forms/validation";
 
 type BookEditFormBucket = Partial<Book>;
 
@@ -21,6 +21,8 @@ const getInitialFormBucket = (): FormBucket<BookEditFormBucket> => ({
     title: [v.required(), v.minLength(5)],
     numPages: [v.number(), v.min(0)],
   },
+  initialValues: {} as BookEditFormBucket,
+  hasChanged: false,
 });
 
 export const BookEditScreen = () => {

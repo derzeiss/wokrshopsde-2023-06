@@ -15,6 +15,8 @@ export const getEmptyFormBucket = <T,>(): FormBucket<T> => ({
   touched: {},
   errors: {},
   validators: {},
+  initialValues: {} as T,
+  hasChanged: false,
 });
 
 interface FormBucketContextValue<T> {
@@ -53,6 +55,7 @@ export const useFormBucket = <T extends object>() => {
         ...formBucket.errors,
         [ev.target.name]: validationErrors,
       },
+      hasChanged: true,
     });
   };
 
