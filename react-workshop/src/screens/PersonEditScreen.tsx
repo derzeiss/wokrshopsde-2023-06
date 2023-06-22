@@ -1,22 +1,19 @@
 import { ChangeEvent, FocusEvent, useState } from "react";
+import { FormBucket } from "../domain/forms/FormBucket";
 
-interface FormData<T> {
-  data: T;
-  touched: { [key: string]: boolean };
-  errors: { [key in keyof T]?: string };
-}
 interface PersonEditFormData {
   firstname: string;
   lastname: string;
 }
 
-const getBlankFormData = (): FormData<PersonEditFormData> => ({
+const getBlankFormData = (): FormBucket<PersonEditFormData> => ({
   data: {
     firstname: "",
     lastname: "",
   },
   touched: {},
   errors: {},
+  validators: {},
 });
 
 const validateFirstname = (firstname: string) => {
@@ -47,8 +44,6 @@ export const PersonEditScreen = () => {
   };
 
   const handleBlur = (ev: FocusEvent<HTMLInputElement>) => {
-    if (formData.touched[ev.target.name]) return;
-
     setFormData({
       ...formData,
       touched: {

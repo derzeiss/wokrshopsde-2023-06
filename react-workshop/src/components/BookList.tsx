@@ -10,14 +10,14 @@ interface BookListProps {
 
 const getMinPages = (books: Book[]) => {
   return books.reduce((minPages, book) => {
-    if (book.numPages < minPages) return book.numPages;
+    if (book.numPages && book.numPages < minPages) return book.numPages;
     return minPages;
   }, Number.MAX_SAFE_INTEGER);
 };
 
 const getMaxPages = (books: Book[]) => {
   return books.reduce((maxPages, book) => {
-    if (book.numPages > maxPages) return book.numPages;
+    if (book.numPages && book.numPages > maxPages) return book.numPages;
     return maxPages;
   }, 0);
 };
