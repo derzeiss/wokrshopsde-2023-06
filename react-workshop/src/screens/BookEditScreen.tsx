@@ -3,20 +3,10 @@ import { useParams } from "react-router-dom";
 import { fetchBook } from "../domain/book/api";
 import { Book } from "../domain/book/Book";
 
-interface BookEditFormData {
-  title: string;
-}
-
 export const BookEditScreen = () => {
   const { isbn } = useParams<{ isbn: string }>();
   const [, setBook] = useState<Book>();
   const [title, setTitle] = useState("");
-
-  const [formData, setFormData] = useState<BookEditFormData>({ title: "" });
-
-  const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [ev.target.name]: ev.target.value });
-  };
 
   useEffect(() => {
     if (!isbn) return;
